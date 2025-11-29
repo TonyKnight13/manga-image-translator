@@ -62,6 +62,28 @@ class DeepseekTranslator(CommonGPTTranslator):
         self.token_count_last = 0
         self.config = None
 
+    def parse_args(self, args: CommonGPTTranslator):
+        super().parse_args(args)
+
+        # Initialize mode-specific components AFTER config is loaded
+        if self.json_mode:
+            self._init_json_mode()
+        else:
+            self._init_standard_mode()
+
+    # def _init_json_mode(self):
+    #     """Activate JSON-specific behavior"""
+    #     self._json_funcs = _GeminiTranslator_json(self)
+    #
+    #     self._createContext = self._json_funcs._createContext
+    #     self._request_translation = self._json_funcs._request_translation
+    #     self._assemble_prompts = self._json_funcs._assemble_prompts
+    #     self._parse_response = self._json_funcs._parse_response
+
+    def _init_standard_mode(self):
+        """Use default method implementations"""
+        self._assemble_prompts = super()._assemble_prompts
+
     def count_tokens(self, text: str):
         """
         通过字符估计标记很困难，并且因语言而异:

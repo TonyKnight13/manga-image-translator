@@ -62,7 +62,9 @@ def resize_regions_to_font_size(img: np.ndarray, text_regions: List['TextBlock']
     
     # Define minimum font size
     if font_size_minimum == -1:  
-        font_size_minimum = round((img.shape[0] + img.shape[1]) / 200)  
+        font_size_minimum = round((img.shape[0] + img.shape[1]) / 200)
+    elif font_size_minimum == -2:
+        font_size_minimum = round((img.shape[0] + img.shape[1]) / 100)
     # logger.debug(f'font_size_minimum {font_size_minimum}')  
     font_size_minimum = max(1, font_size_minimum)  
 

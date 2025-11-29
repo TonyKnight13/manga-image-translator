@@ -1102,7 +1102,7 @@ class MangaTranslator:
             # Save translation if args.save_text is set and quit  
             if self.save_text:  
                 input_filename = os.path.splitext(os.path.basename(self.input_files[0]))[0]  
-                with open(self._result_path(f"{input_filename}_translations.txt"), "w") as f:  
+                with open(self._result_path(f"{input_filename}_translations.txt"), "w", encoding='utf-8') as f:
                     json.dump(translated_sentences, f, indent=4, ensure_ascii=False)  
                 print("Don't continue if --save-text is used")  
                 exit(-1)  

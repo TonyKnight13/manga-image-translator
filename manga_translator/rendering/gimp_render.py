@@ -153,13 +153,14 @@ def gimp_render(out_file, ctx: Context):
 def gimp_console_executable():
     executable = "gimp"
     if platform.system() == "Windows":
-        gimp_dir = os.getenv("LOCALAPPDATA") + "\\Programs\\GIMP 2\\bin\\"
-        executables = glob.glob(gimp_dir + "gimp-console-2.*.exe")
+        # gimp_dir = os.getenv("LOCALAPPDATA") + "\\Programs\\GIMP 2\\bin\\"
+        gimp_dir = "D:\\GIMP 3\\bin\\"
+        executables = glob.glob(gimp_dir + "gimp.exe")
         if len(executables) > 0:
             return executables[0]
         # may be in program files
-        gimp_dir = os.getenv("ProgramFiles") + "\\GIMP 2\\bin\\"
-        executables = glob.glob(gimp_dir + "gimp-console-2.*.exe")
+        gimp_dir = os.getenv("ProgramFiles") + "\\GIMP 3\\bin\\"
+        executables = glob.glob(gimp_dir + "gimp.exe")
         if len(executables) == 0:
             print("error: gimp not found in directory:", gimp_dir)
             return
